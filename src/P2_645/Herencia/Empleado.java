@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Herencia;
+package P2_645.Herencia;
 
 import java.util.Date;
 
@@ -60,6 +60,8 @@ public class Empleado {
         return 0;
     }
     
-    
+    public void fua(){
+        System.out.println("EMPLEADO FUAAA");
+    }
     
 }

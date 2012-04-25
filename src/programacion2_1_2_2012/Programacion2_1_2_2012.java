@@ -4,7 +4,7 @@
  */
 package programacion2_1_2_2012;
 
-import Herencia.EmpleadoPermanente;
+import P2_645.Herencia.EmpleadoPermanente;
 import P2_640.Herencia.CuentaAhorro;
 
 /**
