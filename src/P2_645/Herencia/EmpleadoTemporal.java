@@ -17,6 +17,14 @@ public class EmpleadoTemporal extends EmpleadoPermanente{
         super(c,n,s);
         finContrato = new Date();
     }
+
+    public Date getFinContrato() {
+        return finContrato;
+    }
+
+    public void setFinContrato(Date finContrato) {
+        this.finContrato = finContrato;
+    }
     
     @Override
     public void fua(){
@@ -33,6 +41,14 @@ public class EmpleadoTemporal extends EmpleadoPermanente{
         
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Contrato Finaliza: " +
+                finContrato;
+    }
+    
+    
     
     
 }

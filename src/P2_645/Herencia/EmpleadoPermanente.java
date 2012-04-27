@@ -10,13 +10,25 @@ package P2_645.Herencia;
  */
 public class EmpleadoPermanente extends Empleado{
     protected double salario;
-    protected boolean hasSeguro;
-    
+    protected boolean hasSeguro;  
+       
     public EmpleadoPermanente(int c , String n,double s){
         super(c,n);
         hasSeguro = false;
         salario = s;
         super.getCodigo();
+    }
+
+    public void setHasSeguro(boolean hasSeguro) {
+        this.hasSeguro = hasSeguro;
+    }
+
+    public boolean isHasSeguro() {
+        return hasSeguro;
+    }
+
+    public double getSalario() {
+        return salario;
     }
 
     @Override
@@ -36,7 +48,7 @@ public class EmpleadoPermanente extends Empleado{
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + " - " + salario;
     }
     
     @Override

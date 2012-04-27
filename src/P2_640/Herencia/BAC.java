@@ -19,5 +19,6 @@ public class BAC {
         cb1.Fua();
         cb2.Fua();
         cb3.Fua();
+        
     }
 }

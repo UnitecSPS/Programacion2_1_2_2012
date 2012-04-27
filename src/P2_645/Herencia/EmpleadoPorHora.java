@@ -25,7 +25,6 @@ public class EmpleadoPorHora extends Empleado{
         this.horasT = horasT;
     }
     
-
     @Override
     public double calcularPagoMensual() {
         double tn, te = 0;
@@ -38,6 +37,12 @@ public class EmpleadoPorHora extends Empleado{
         }
         
         return tn + te;    
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Horas Trabajadas: "+
+                horasT;
     }
     
     
