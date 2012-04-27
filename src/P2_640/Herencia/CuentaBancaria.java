@@ -16,13 +16,11 @@ public class CuentaBancaria {
     protected double saldo;
     protected Date inicio;
     
-    public CuentaBancaria(int nc,String n){
+    public CuentaBancaria(int nc,String n,double sal){
         numCuenta = nc;
         nombre = n;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+        saldo = sal;
+        inicio = new Date();
     }
 
     public Date getInicio() {
@@ -48,8 +46,20 @@ public class CuentaBancaria {
         return dato;
     }
     
-    public String toStringAbuelo(){
-        return super.toString();
+    public void hacerDeposito(double monto){
+        saldo += monto;
+    }
+    
+    public boolean hacerRetiro(double monto){
+        if( saldo > monto ){
+            saldo -= monto;
+            return true;
+        }
+        return false;
+    }
+    
+    public void Fua(){
+        System.out.println("SOY EL PAPA!");
     }
     
     
