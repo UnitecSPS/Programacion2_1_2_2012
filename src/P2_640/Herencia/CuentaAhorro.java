@@ -70,5 +70,12 @@ public class CuentaAhorro extends CuentaBancaria{
     public void Fua(){
         System.out.println("SOY LA DE AHORRO");
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " - tasa Interes: " + 
+                tasaInteres;
+    }
+    
     
 }
