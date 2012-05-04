@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package P2_645.Examen1;
+package Examen1;
 
 /**
  *
@@ -38,7 +38,7 @@ public class TVService extends Servicio{
     public void imprimir(){
         super.imprimir();
         for( String c : canales)
-            System.out.println(c);
+            System.out.printf("%s\n",c);
         System.out.println(isDigital ? " - Digital" : " - Normal");
     }
 }
