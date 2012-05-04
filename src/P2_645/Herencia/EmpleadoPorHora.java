@@ -27,6 +27,7 @@ public class EmpleadoPorHora extends Empleado{
     
     @Override
     public double calcularPagoMensual() {
+        
         double tn, te = 0;
         
         if( horasT <= 40 )
@@ -43,7 +44,5 @@ public class EmpleadoPorHora extends Empleado{
     public String toString() {
         return super.toString() + " Horas Trabajadas: "+
                 horasT;
-    }
-    
-    
+    } 
 }
