@@ -88,12 +88,19 @@ public class Main {
     }
 
     private static double vaciarBarco(String nombre) {
-        for(Barco ship : barcos){
-            if( ship.getNombre().equals(nombre) &&
-                ship.isCirculando() ){
-                return ship.vaciarCobrar();
+        return vaciarBarco(nombre, 0);
+    }
+    
+    private static double vaciarBarco(String n, int pos){
+        if( pos < barcos.size() ){
+            if( barcos.get(pos).getNombre().equals(n) &&
+                    barcos.get(pos).isCirculando() ){
+                System.out.println("Se vaciara: " + barcos.get(pos) );
+                return barcos.get(pos).vaciarCobrar();
             }
+            return vaciarBarco(n, pos+1);
         }
+        System.out.println("NO EXISTE BARCO");
         return 0;
     }
 
