@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Gotcha
  */
-public class CuentaBancaria {
+public abstract class CuentaBancaria {
     protected int numCuenta;
     protected String nombre;
     protected double saldo;
@@ -58,9 +58,7 @@ public class CuentaBancaria {
         return false;
     }
     
-    public void Fua(){
-        System.out.println("SOY EL PAPA!");
-    }
+    public abstract void Fua();
     
     
 }

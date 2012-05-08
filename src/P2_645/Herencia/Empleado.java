@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Gotcha
  */
-public class Empleado {
+public abstract class Empleado {
     protected String nombre;
     protected int codigo;
     protected Date inicio; 
@@ -56,12 +56,11 @@ public class Empleado {
         return codigo + " - " + nombre;
     }
     
-    public double calcularPagoMensual(){
-        return 0;
-    }
+    public abstract double calcularPagoMensual();
     
     public void fua(){
         System.out.println("EMPLEADO FUAAA");
     }
     
 }
+   

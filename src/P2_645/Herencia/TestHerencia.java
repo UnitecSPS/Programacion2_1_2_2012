@@ -17,7 +17,7 @@ public class TestHerencia {
         Empleado em2 = new EmpleadoTemporal(3,"Messi",4500);
         Empleado em4 = new EmpleadoPorHora( 4, "Pep");
         //NORMAL
-        Empleado em3 = new Empleado(2,"Sergio");
+        //Empleado em3 = new Empleado(2,"Sergio");
         
         //DOWNCASTINGS
         //INDIRECTA
@@ -40,7 +40,7 @@ public class TestHerencia {
         
         em1.fua();
         em2.fua();
-        em3.fua();
+        //em3.fua();
         
     }
 }
