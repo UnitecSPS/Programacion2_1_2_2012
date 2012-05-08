@@ -33,6 +33,7 @@ public class EmpleadoTemporal extends EmpleadoPermanente{
 
     @Override
     public double calcularPagoMensual() {
+        double f = super.calcularPagoMensual();
         Date now = new Date();
         
         if( now.before(finContrato)){
