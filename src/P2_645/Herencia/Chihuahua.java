@@ -15,6 +15,11 @@ public class Chihuahua extends Perro {
         System.out.println("MUTANTE");
     }
 
+    @Override
+    public void comoHabla() {
+        System.out.println("gui gui gui");
+    }
+
     
     
 }

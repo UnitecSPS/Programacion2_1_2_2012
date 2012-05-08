@@ -15,7 +15,7 @@ public class BAC {
         CuentaBancaria cb2 = new CuentaPlazoFijo(3,"Kaka");
         CuentaBancaria cb4 = new CuentaCheques(4,"PEP");
         //NORMAL
-        CuentaBancaria cb3 = new CuentaBancaria(2,"Dany",100);
+        //CuentaBancaria cb3 = new CuentaBancaria(2,"Dany",100);
         
         //DOWNCASTING
         //INDIRECTA

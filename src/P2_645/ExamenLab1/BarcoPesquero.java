@@ -4,15 +4,18 @@
  */
 package P2_645.ExamenLab1;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Gotcha
  */
 public class BarcoPesquero extends Barco{
     private int pecesCapturados;
-    public static int PRECIO_X_PESCADO = 150;
+    public static final int PRECIO_X_PESCADO = 150;
     
     public BarcoPesquero(String n){
+        
         super(n);
         pecesCapturados = 0;
     }

@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Gotcha
  */
-public class Barco {
+public abstract class Barco {
     protected String nombre;
     protected boolean circulando;
     protected Date inicio;
@@ -39,13 +39,9 @@ public class Barco {
                 circulando;
     }
     
-    public void agregarElemento(){
-        System.out.println("SOY PADRE");
-    }
+    public abstract void agregarElemento();
     
-    public double vaciarCobrar(){
-        return 0;
-    }
+    public abstract double vaciarCobrar();
     
     public void desactivar(){
         Date now = new Date();

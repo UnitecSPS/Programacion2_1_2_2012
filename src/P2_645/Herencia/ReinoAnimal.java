@@ -27,17 +27,27 @@ public class ReinoAnimal {
             System.out.println("PERRO!!");
         }
         
-        Animal a = new Animal(4,false){
+        Animal g = new Gato(){
 
             @Override
             public void comoHabla() {
-                wazup();
-                System.out.println("SOY ANIMAL GRUIUI");
+                System.out.println("MIIIIIIIAUU");
+            }
+            
+        };
+        g.comoHabla();
+        
+        Animal a = new Animal(4,false) {
+
+            @Override
+            public void comoHabla() {
+                System.out.println("ELLLA SOY ANIMAL ARGGG");
+                this.wazup();
             }
             
             public void wazup(){
-                System.out.println("WAZZUUOP");
-                System.out.println("");
+                System.out.println("wazup");
+                
             }
         };
         
