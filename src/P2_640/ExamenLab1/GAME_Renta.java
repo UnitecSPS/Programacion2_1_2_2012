@@ -5,12 +5,14 @@
 
 package P2_640.ExamenLab1;
 
+import java.util.Calendar;
+
 public class GAME_Renta extends ITEMRenta {
     protected String type;
     
-    protected static String PS3="PS3";
-    protected static String XBOX360="XBOX360";
-    protected static String WII="WII";
+    public final static String PS3="PS3";
+    final public static String XBOX360="XBOX360";
+    public static final String WII="WII";
  
     public GAME_Renta(int c, String n, double p, int cant, String t){
         super(c,n,p,cant);
@@ -18,7 +20,7 @@ public class GAME_Renta extends ITEMRenta {
     }
 
     @Override
-    protected double getMontoRenta(int dias) {
+    public double getMontoRenta(int dias) {
         if(type.equals(PS3)||type.equals(XBOX360)){
             cantcopias-=1;
             if(dias<=3)
@@ -37,7 +39,7 @@ public class GAME_Renta extends ITEMRenta {
     }
 
     @Override
-    protected void imprimir() {
+    public void imprimir() {
         super.imprimir();
         System.out.println(" CONSOLA: "+type);
     }

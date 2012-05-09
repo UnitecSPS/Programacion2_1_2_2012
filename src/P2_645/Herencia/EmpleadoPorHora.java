@@ -8,7 +8,7 @@ package P2_645.Herencia;
  *
  * @author Gotcha
  */
-public class EmpleadoPorHora extends Empleado{
+public final class EmpleadoPorHora extends Empleado{
     private int horasT;
     public static double PAGO_HORA_NORMAL = 40;
     public static double PAGO_HORA_EXTRA = 60;

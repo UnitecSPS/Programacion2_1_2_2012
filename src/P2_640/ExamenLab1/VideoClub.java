@@ -46,6 +46,7 @@ public class VideoClub {
     }
     
     public static void agregarItem(int tipo){
+        
         if(tipo==0||tipo==1){
             System.out.println("CODIGO: ");
             int c=lea.nextInt();
