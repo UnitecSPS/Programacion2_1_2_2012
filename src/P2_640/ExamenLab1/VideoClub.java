@@ -70,6 +70,7 @@ public class VideoClub {
         }else{
             System.out.println("ERROR DE TIPO DE RENTA");
         }
+        
     }
     
     private static void imprimirInventario(){
