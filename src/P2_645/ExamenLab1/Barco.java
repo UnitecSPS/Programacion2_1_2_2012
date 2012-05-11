@@ -41,12 +41,17 @@ public abstract class Barco {
     
     public abstract void agregarElemento();
     
+    /**
+     * En esta funcion <code>vaciarCobbrar</code> yo vacio todo
+     * el contenido del barco segun su tipo
+     * @return el total generado segun lo que el barco lleva.
+     */
     public abstract double vaciarCobrar();
     
     public void desactivar(){
         Date now = new Date();
         circulando = false;
-        
+       
         long diff = now.getTime() - inicio.getTime();
         //pasar los ms a dias
         long dias = diff/(1000*60*60*24);
