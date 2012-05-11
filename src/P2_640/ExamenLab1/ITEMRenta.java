@@ -5,7 +5,7 @@
 
 package P2_640.ExamenLab1;
 
-public class ITEMRenta {
+public abstract class ITEMRenta {
     protected String nombre;
     protected int codigo;
     protected double precio;
@@ -18,23 +18,21 @@ public class ITEMRenta {
         cantcopias=cant;
     }
 
-    protected int getCodigo() {
+    public final int getCodigo() {
         return codigo;
     }
 
-    protected String getNombre() {
+    public final String getNombre() {
         return nombre;
     }
 
-    protected double getPrecio() {
+    public final double getPrecio() {
         return precio;
     }
     
-    protected double getMontoRenta(int dias){
-        return 0;
-    }
+    public abstract double getMontoRenta(int dias);
     
-    protected void imprimir(){
+    public void imprimir(){
         System.out.println("CODIGO: "+codigo+"\nNOMBRE: "+nombre+"\nPRECIO: "+precio+"\nCOPIAS: "+cantcopias);
     }
 }

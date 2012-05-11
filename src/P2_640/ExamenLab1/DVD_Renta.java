@@ -39,12 +39,12 @@ public class DVD_Renta extends ITEMRenta {
         }
     }
     
-    protected void listarActores(){
+    public void listarActores(){
         listarActores(0);
     }
 
     @Override
-    protected double getMontoRenta(int dias) {
+    public double getMontoRenta(int dias) {
         if(dias<=2){
             cantcopias-=1;
             return precio;
@@ -55,7 +55,7 @@ public class DVD_Renta extends ITEMRenta {
     }
 
     @Override
-    protected void imprimir() {
+    public void imprimir() {
         super.imprimir();
         System.out.println(" GENERO: "+genero+" DURACION: "+duracion+ "ELENCO:");
         listarActores();

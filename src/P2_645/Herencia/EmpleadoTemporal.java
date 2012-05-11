@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Gotcha
  */
-public class EmpleadoTemporal extends EmpleadoPermanente{
+public final class EmpleadoTemporal extends EmpleadoPermanente{
     private Date finContrato;
     
     public EmpleadoTemporal(int c, String n, double s){

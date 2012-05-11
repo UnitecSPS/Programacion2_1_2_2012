@@ -23,36 +23,40 @@ public abstract class Empleado {
         inicio = new Date();
     }
 
-    public int getCodigo() {
+    public final int getCodigo() {
         return codigo;
     }
 
-    public Date getInicio() {
+    public final Date getInicio() {
         return inicio;
     }
 
-    public String getLocalidad() {
+    public final String getLocalidad() {
         return localidad;
     }
 
-    public Date getNacimiento() {
+    public final Date getNacimiento() {
         return nacimiento;
     }
 
-    public String getNombre() {
+    public final String getNombre() {
         return nombre;
     }
     
-    public void setLocalidad(String localidad) {
+    public final void setLocalidad(String localidad) {
         this.localidad = localidad;
-    }
+    } 
 
-    public void setNacimiento(Date nacimiento) {
+    /**
+     * 
+     * @param nacimiento 
+     */
+    public final void setNacimiento(Date nacimiento) {
         this.nacimiento = nacimiento;
     }
 
     @Override
-    public String toString() {
+    public  String toString() {
         return codigo + " - " + nombre;
     }
     

@@ -14,9 +14,9 @@ import java.util.Scanner;
 public class Empresa {
     private ArrayList<Empleado> empleados;
     
-    public static int TIPO_PERMANENTE = 0;
-    public static int TIPO_TEMPORAL = 1;
-    public static int TIPO_PORHORA = 2;
+    public final static int TIPO_PERMANENTE = 0;
+    public final static int TIPO_TEMPORAL = 1;
+    public final static int TIPO_PORHORA = 2;
          
     
     public Empresa(){

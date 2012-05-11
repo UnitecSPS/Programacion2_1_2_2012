@@ -18,7 +18,7 @@ public class EmpleadoPermanente extends Empleado{
         salario = s;
         super.getCodigo();
     }
-
+    
     public void setHasSeguro(boolean hasSeguro) {
         this.hasSeguro = hasSeguro;
     }

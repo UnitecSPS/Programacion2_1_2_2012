@@ -11,7 +11,6 @@ import java.util.Date;
  * @author Gotcha
  */
 public class CuentaPlazoFijo extends CuentaAhorro{
-    
     private Date fin;
     private double interesesGanados;
     public static double TASA_FIJA = 0.2;
