@@ -21,6 +21,7 @@ public abstract class CuentaBancaria {
         nombre = n;
         saldo = sal;
         inicio = new Date();
+        
     }
 
     public Date getInicio() {
