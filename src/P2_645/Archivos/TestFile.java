@@ -4,11 +4,8 @@
  */
 package P2_645.Archivos;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,11 +19,14 @@ public class TestFile {
         int op;
         
         do{
-            System.out.println("1- Configurar Archivo");
+            System.out.println("\n\n1- Configurar Archivo");
             System.out.println("2- Crear Archivo");
             System.out.println("3- Crear Directorio");
             System.out.println("4- Ver Informacion");
             System.out.println("5- Borrar");
+            System.out.println("6- Listar Directorio");
+            System.out.println("7- Renombrar y/o Mover");
+            System.out.println("8- Tree");
             System.out.println("10- Salir");
             System.out.println("Ingrese OPcion: ");
             op = lea.nextInt();
@@ -61,6 +61,18 @@ public class TestFile {
                     else
                         System.out.println("No se pudo borrar");
                     break;
+                case 6:
+                    fa.dir();
+                    break;
+                case 7:
+                    System.out.println("Ingrese el Nuevo nombre o dir: ");
+                    if( fa.renombrar(lea.next()) )
+                        System.out.println("Renombrado exitoso");
+                    else
+                        System.out.println("Fallo el Renombrado");
+                    break;
+                case 8:
+                    fa.tree();
             }
         }while( op != 10 );
         
