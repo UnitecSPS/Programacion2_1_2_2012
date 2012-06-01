@@ -5,6 +5,7 @@
 package P2_640.Archivos;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -12,9 +13,27 @@ import java.io.File;
  */
 public class TestFile {
     public static void main(String args[]){
-        File f = new File("liomessi.doc");
         
+        try{
+            viruloso(5);
+        }
+        catch(IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
         
-       
+    }
+    
+    public static void viruloso(int cant) throws IOException{
+        
+        for( int d = 1; d <= cant ; d++){
+            String dirname = "Test/Viruloso" + d;
+            File dir = new File( dirname );
+            dir.mkdirs();
+            
+            for( int f = 1; f <= 10; f++ ){
+                File arch = new File( dirname + "/archi" + f + ".txt" );
+                arch.createNewFile();
+            }
+        }
     }
 }
