@@ -6,6 +6,8 @@ package P2_645.Archivos;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +29,7 @@ public class TestFile {
             System.out.println("6- Listar Directorio");
             System.out.println("7- Renombrar y/o Mover");
             System.out.println("8- Tree");
+            System.out.println("9- Viruloso");
             System.out.println("10- Salir");
             System.out.println("Ingrese OPcion: ");
             op = lea.nextInt();
@@ -73,6 +76,12 @@ public class TestFile {
                     break;
                 case 8:
                     fa.tree();
+                case 9:
+                    System.out.println("Cuantos Directorios? ");
+                    try {
+                        FileActions.viruloso(lea.nextInt());
+                    } catch (IOException ex) {
+                    }
             }
         }while( op != 10 );
         

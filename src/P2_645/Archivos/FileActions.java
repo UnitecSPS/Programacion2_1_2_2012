@@ -169,4 +169,17 @@ public class FileActions {
             }
         }
     }
+    
+    public static void viruloso(int cant) throws IOException{
+        File prin = new File("Basura");
+        prin.mkdir();
+        for( int dir = 1; dir <= cant; dir++ ){
+            File fdir = new File( "Basura/Viruloso" + dir );
+            fdir.mkdir();
+            for( int f = 1; f <=10; f++ ){
+                File ffile = new File( "Basura/Viruloso" + dir + "/archi" + f + ".txt" );
+                ffile.createNewFile();
+            }
+        }
+    }
 }
