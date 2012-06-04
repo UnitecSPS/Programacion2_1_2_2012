@@ -6,6 +6,7 @@ package P2_645.Archivos;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Date;
 
 /**
  *
@@ -163,10 +164,76 @@ public class jTunes {
             int vots =  rSongs.readInt();
             
             if( rSongs.readBoolean() ){
-                System.out.println(cod + " - " + n + " $" + p + 
+                System.out.println(cod + " - " + n + " Lps." + p + 
                         " genero: " + TipoGenero.porOrdinal(gen) + " rate " +
                         estrellas(star,vots) + " estrellas");
             }
         }
+    }
+    
+    public boolean download(int codcancion, String user)throws IOException{
+        if( buscar(codcancion) ){
+            //datos de la cancion
+            int codsong = rSongs.readInt();
+            String n = rSongs.readUTF();
+            double p = rSongs.readDouble();
+            //datos para bajar
+            rInvoice.seek( rInvoice.length() );
+            //cod factura
+            rInvoice.writeInt( getCodigo(4) );
+            //cod cancion
+            rInvoice.writeInt(codsong);
+            //precio
+            rInvoice.writeDouble(p);
+            //fecha
+            rInvoice.writeLong( new Date().getTime() );
+            //username
+            rInvoice.writeUTF(user);
+            
+            System.out.println("Felicidades " + user + " has bajado exitosamente " +
+                    n);
+            return true;
+        }        
+        return false;
+    }
+    
+    public void listarFacturas()throws IOException{
+        rInvoice.seek(0);
+        
+        while( rInvoice.getFilePointer() < rInvoice.length() ){
+            int cf = rInvoice.readInt();
+            int cc = rInvoice.readInt();
+            double p = rInvoice.readDouble();
+            long f = rInvoice.readLong();
+            String u = rInvoice.readUTF();
+            
+            String n = "";
+            if( buscar(cc)){
+                rSongs.readInt();
+                n = rSongs.readUTF();
+            }
+            
+            System.out.println(cf + " - " + " bajo la cancion con codigo " +
+                    cc + " : " + n + " a Lps. " + p + " el " + new Date(f) + 
+                    " bajado por: " + u);
+        }
+    }
+    
+    
+    public double montoGenerado(Date i,Date f)throws IOException{
+        rInvoice.seek(0);
+        double monto = 0;
+        while(rInvoice.getFilePointer() < rInvoice.length() ){
+            rInvoice.readInt();
+            rInvoice.readInt();
+            double p = rInvoice.readDouble();
+            long fe = rInvoice.readLong();
+            Date fbajada = new Date(fe);
+            rInvoice.readUTF();
+            
+            if( fbajada.after(i) && fbajada.before(f) )
+                monto += p;
+        }
+        return monto;
     }
 }
