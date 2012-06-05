@@ -6,6 +6,7 @@ package P2_645.Archivos;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -216,5 +217,83 @@ public class jTunes {
                 monto += p;
         }
         return monto;
+    }
+    
+    /***
+     * Actualiza el precio de una cancion DISPONIBLE
+     * @param cs Codigo de la Cancion
+     * @param np Nuevo Precio
+     * @return 
+     */
+    public boolean updatePrecio(int cs,double np) throws IOException{
+        if( buscar(cs)){
+            rSongs.readInt();
+            rSongs.readUTF();
+            rSongs.writeDouble(np);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
+    
+    /***
+     * Retorna el nombre de la cancion que mas se ha
+     * bajado desde la fecha minDate hasta el presente.
+     * Si la fecha minDate es mayor que la actual se 
+     * retorna "FECHA INVALIDA".
+     * @param minDate La fecha minima
+     * @return El nombre de la cancion
+     */
+    public String cancionPopular(Date minDate) throws IOException{
+        
+        if( minDate.getTime() > new Date().getTime() )
+            return "FECHA INVALIDA";
+        
+        int mayor = 0;
+        String popular = "";
+        
+        rSongs.seek(0);
+        while( rSongs.getFilePointer() < rSongs.length() ){
+            int cod = rSongs.readInt();
+            String n = rSongs.readUTF();
+            rSongs.seek( rSongs.getFilePointer() + 21);
+            
+            int cuantas = cuantasBajadas(cod,minDate);
+            if( cuantas  > mayor ){
+                mayor = cuantas;
+                popular = n;
+            }
+        }
+        return popular;
+    }
+    
+    /***
+     * Inactivar TODAS las canciones cuyo CODIGO se
+     * encuentre guardado en el Arraylist de songs
+     * @param songs Listado de codigos de canciones para
+     *          inactivar
+     */
+    public void inactivarCanciones(ArrayList<Integer> songs){
+        
+    }
+
+    private int cuantasBajadas(int cod, Date minDate) throws IOException {
+        rInvoice.seek(0);
+        int cuantos = 0;
+        
+        while(rInvoice.getFilePointer() < rInvoice.length() ){
+            rInvoice.readInt();
+            int cs = rInvoice.readInt();
+            rInvoice.readDouble();
+            long fecha = rInvoice.readLong();
+            rInvoice.readUTF();
+            
+            if( cs == cod && fecha >= minDate.getTime() )
+                cuantos++;
+        }
+        
+        return cuantos;
     }
 }
