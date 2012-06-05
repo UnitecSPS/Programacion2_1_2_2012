@@ -22,7 +22,9 @@ public class BAC {
                 System.out.println("\n1-Agregar Cuenta");
                 System.out.println("2-Listar Cuentas");
                 System.out.println("3-Buscar Cuenta");
-                System.out.println("4- Salir");
+                System.out.println("4-Depositar");
+                System.out.println("5-Retirar");
+                System.out.println("6-Salir");
                 System.out.print("\nEscoja Opcion: ");
                 op = lea.nextInt();
                 
@@ -43,6 +45,28 @@ public class BAC {
                         else
                             System.out.println("La Cuenta NO existe");
                         break;
+                    case 4:
+                        System.out.println("Codigo Cuenta: ");
+                        int cc = lea.nextInt();
+                        System.out.println("Monto a depositar: ");
+                        double m = lea.nextDouble();
+                        
+                        if( bank.deposito(cc, m))
+                            System.out.println("Deposito exitoso");
+                        else
+                            System.out.println("No se pudo hacer deposito");
+                        break;
+                    case 5:
+                        System.out.println("Codigo Cuenta: ");
+                        cc = lea.nextInt();
+                        System.out.println("Monto a retirar: ");
+                        m = lea.nextDouble();
+                        
+                        if( bank.retiro(cc, m))
+                            System.out.println("Retiro exitoso");
+                        else
+                            System.out.println("No se pudo hacer retirar");
+                        break;
                         
                 }
             }
@@ -51,7 +75,7 @@ public class BAC {
                 System.out.println("Error: " + e.getMessage());
             }   
             
-        }while( op != 4);
+        }while( op != 6);
         
     }
 }

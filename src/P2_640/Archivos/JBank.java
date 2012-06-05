@@ -4,7 +4,6 @@
  */
 package P2_640.Archivos;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
@@ -16,6 +15,7 @@ import java.util.Date;
 public class JBank {
     RandomAccessFile rCuentas;
     RandomAccessFile rLog;
+    public final static double TASA_INTERES = 0.08;
     
     public JBank(){
         try{
@@ -103,5 +103,51 @@ public class JBank {
         return false;
     }
     
+    private void addTransaccion(int cc,double m,Transaccion t) throws IOException{
+        rLog.seek( rLog.length() );
+        rLog.writeInt(cc);
+        rLog.writeDouble(m);
+        rLog.writeUTF(t.toString());
+        rLog.writeLong( new Date().getTime() );
+    }
     
+    private boolean transaccionBancaria(int cc,double m,Transaccion tp) throws IOException{
+        if( buscar(cc) ){
+            rCuentas.readInt();
+            rCuentas.readUTF();
+            long pos = rCuentas.getFilePointer();
+            double s = rCuentas.readDouble();
+            rCuentas.readLong();
+            
+            if( tp == Transaccion.RETIRO && s < m ){
+                System.out.println("Saldos Insuficientes");
+                return false;
+            }
+            
+            if( !rCuentas.readBoolean() ){
+                addTransaccion(cc,m*0.1, Transaccion.ACTIVACION);
+                m -= m * 0.1;
+            }
+            
+            //depositar o retirar
+            addTransaccion(cc, m, tp);
+            
+            //actualizar cuenta
+            rCuentas.seek(pos);
+            rCuentas.writeDouble(s + (tp == Transaccion.DEPOSITO ? m : -m));
+            rCuentas.writeLong( new Date().getTime() );
+            rCuentas.writeBoolean(true);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean deposito(int cc,double m) throws IOException{
+        return transaccionBancaria(cc, m, Transaccion.DEPOSITO);
+    }
+    
+    public boolean retiro(int cc, double m) throws IOException{
+        return transaccionBancaria(cc, m, Transaccion.RETIRO);
+    }
 }

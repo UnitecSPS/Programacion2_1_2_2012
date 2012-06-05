@@ -14,25 +14,6 @@ import java.util.Date;
  * 
  */
 
-
-enum TipoGenero{ POP, ROCK, RAP, COUNTRY;
-
-    //HOME MADE
-    public static TipoGenero porOrdinal(int ordinal){
-        switch( ordinal ){
-            case 0:
-                return TipoGenero.POP;
-            case 1:
-                return TipoGenero.ROCK;
-            case 2:
-                return TipoGenero.RAP;
-            case 3:
-                return TipoGenero.COUNTRY;
-        }
-        throw new RuntimeException("Genero incorrecto");
-    }
-}
-
 public class jTunes {
     RandomAccessFile rSongs;
     RandomAccessFile rInvoice;
