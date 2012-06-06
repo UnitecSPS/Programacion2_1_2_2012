@@ -276,8 +276,20 @@ public class jTunes {
      * @param songs Listado de codigos de canciones para
      *          inactivar
      */
-    public void inactivarCanciones(ArrayList<Integer> songs){
+    public void inactivarCanciones(ArrayList<Integer> songs) throws IOException{
+        rSongs.seek(0);
         
+        while( rSongs.getFilePointer() < rSongs.length() ){
+            int cod = rSongs.readInt();
+            rSongs.readUTF();
+            rSongs.seek( rSongs.getFilePointer() + 20 );
+            
+            if( songs.contains(cod) ){
+                rSongs.writeBoolean(false);
+            }
+            else
+                rSongs.readBoolean();
+        }
     }
 
     private int cuantasBajadas(int cod, Date minDate) throws IOException {
