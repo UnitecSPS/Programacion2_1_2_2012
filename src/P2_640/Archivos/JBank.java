@@ -6,6 +6,7 @@ package P2_640.Archivos;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -149,5 +150,93 @@ public class JBank {
     
     public boolean retiro(int cc, double m) throws IOException{
         return transaccionBancaria(cc, m, Transaccion.RETIRO);
+    }
+    
+    /**
+     * Hacer una funcion que recorre el archivo de cuentas.
+     * Si la ultima fecha de modificacion fue hace mas de 6 meses
+     * la cuenta es inactivada
+     */
+    public void inactivarCuentas() throws IOException{
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, -6);
+        long mili6 = c.getTime().getTime();
+        
+        rCuentas.seek(0);
+        while( rCuentas.getFilePointer() < rCuentas.length() ){
+            int cc = rCuentas.readInt();
+            String cl = rCuentas.readUTF();
+            rCuentas.readDouble();
+            long f = rCuentas.readLong();
+            
+            if( f < mili6 ){
+                System.out.println("Inactivando Cuenta #" + cc + 
+                        " de cliente: " + cl);
+                rCuentas.writeBoolean(false);
+            }
+            else
+                rCuentas.readBoolean();
+        }
+    }
+    
+    /**
+     * Imprimir todas las transacciones de una cuenta. Dichas
+     * transacciones tienen que haber sido realizadas no antes de la
+     * fecha minima. Imprimir consolidado final es decir
+     * Cuanto de deposito, retiro, intereses o activacion
+     * @param cc Codigo de la cuenta
+     * @param min Fecha minima
+     */
+    public void libreta(int cc,Date min) throws IOException{
+        rLog.seek(0);
+        double tDeposito = 0,tRetiro=0,tInt=0,tAct=0;
+        boolean tiene1 = false;
+        
+        while(rLog.getFilePointer() < rLog.length() ){
+            int cod = rLog.readInt();
+            double m = rLog.readDouble();
+            String t = rLog.readUTF();
+            long fecha = rLog.readLong();
+            
+            if( cod == cc && fecha >= min.getTime() ){
+                System.out.println(t + " Lps " + m + " " +
+                        new Date(fecha) );
+                tiene1 = true;
+                switch( Transaccion.valueOf(t) ){
+                    case DEPOSITO:
+                        tDeposito += m;
+                        break;
+                    case RETIRO:
+                        tRetiro += m;
+                        break;
+                    case INTERESES:
+                        tInt += m;
+                        break;
+                    default:
+                        tAct += m;
+                        break;
+                        
+                }
+            }
+        }
+        
+        if( tiene1 ){
+            System.out.println("Total Depositado: " + tDeposito);
+            System.out.println("Total Retiado: " + tRetiro);
+            System.out.println("Total Intereses: " + tInt);
+            System.out.println("Total Activaciones: " + tAct );
+        }
+        else
+            System.out.println("CLIENTE NO TIENE TRANSACCIONES");
+    }
+    
+    /**
+     * Recorre todos las cuentas registrando los intereses
+     * Recuerden que los intereses le suman al saldo. Ademas
+     * se guarda una transaccion de intereses para cada cuenta
+     * NOTA= Si la cuenta esta inactiva NO gana intereses.
+     */
+    public void registrarIntereses(){
+        
     }
 }

@@ -213,6 +213,7 @@ public class jTunes {
             Date fbajada = new Date(fe);
             rInvoice.readUTF();
             
+            
             if( fbajada.after(i) && fbajada.before(f) )
                 monto += p;
         }

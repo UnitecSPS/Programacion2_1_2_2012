@@ -4,6 +4,7 @@
  */
 package P2_640.Archivos;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -24,7 +25,9 @@ public class BAC {
                 System.out.println("3-Buscar Cuenta");
                 System.out.println("4-Depositar");
                 System.out.println("5-Retirar");
-                System.out.println("6-Salir");
+                System.out.println("6-Inactivar Cuentas");
+                System.out.println("7-Libreta");
+                System.out.println("8-Salir");
                 System.out.print("\nEscoja Opcion: ");
                 op = lea.nextInt();
                 
@@ -67,6 +70,16 @@ public class BAC {
                         else
                             System.out.println("No se pudo hacer retirar");
                         break;
+                    case 6:
+                        bank.inactivarCuentas();
+                        break;
+                    case 7:
+                        System.out.println("Ingrese Fecha Min Y/M/D ");
+                        Calendar c = Calendar.getInstance();
+                        c.set(lea.nextInt(), lea.nextInt()-1, lea.nextInt());
+                        System.out.println("Ingrese cod cuenta: ");
+                        bank.libreta(lea.nextInt(), c.getTime());
+                        break;
                         
                 }
             }
@@ -75,7 +88,7 @@ public class BAC {
                 System.out.println("Error: " + e.getMessage());
             }   
             
-        }while( op != 6);
+        }while( op != 8);
         
     }
 }
