@@ -100,7 +100,7 @@ public class JBank {
                 return true;
             }
             
-        }
+        } 
         return false;
     }
     
@@ -236,7 +236,24 @@ public class JBank {
      * se guarda una transaccion de intereses para cada cuenta
      * NOTA= Si la cuenta esta inactiva NO gana intereses.
      */
-    public void registrarIntereses(){
+    public void registrarIntereses() throws IOException{
+        rCuentas.seek(0);
         
+        while( rCuentas.getFilePointer() < rCuentas.length() ){
+            int cc = rCuentas.readInt();
+            rCuentas.readUTF();
+            long pos = rCuentas.getFilePointer();
+            double sal = rCuentas.readDouble();
+            rCuentas.readLong();
+            
+            if( rCuentas.readBoolean() ){
+                rCuentas.seek( pos );
+                double inter = sal * TASA_INTERES;
+                rCuentas.writeDouble(sal + inter);
+                addTransaccion( cc, inter, Transaccion.INTERESES);
+                
+                rCuentas.seek( rCuentas.getFilePointer() + 9);
+            }
+        }
     }
 }

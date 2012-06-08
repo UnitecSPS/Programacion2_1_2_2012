@@ -27,7 +27,8 @@ public class BAC {
                 System.out.println("5-Retirar");
                 System.out.println("6-Inactivar Cuentas");
                 System.out.println("7-Libreta");
-                System.out.println("8-Salir");
+                System.out.println("8-Registrar Intereses");
+                System.out.println("9-Salir");
                 System.out.print("\nEscoja Opcion: ");
                 op = lea.nextInt();
                 
@@ -80,7 +81,9 @@ public class BAC {
                         System.out.println("Ingrese cod cuenta: ");
                         bank.libreta(lea.nextInt(), c.getTime());
                         break;
-                        
+                    case 8:
+                        bank.registrarIntereses();
+                        break;
                 }
             }
             catch(Exception e)
@@ -88,7 +91,7 @@ public class BAC {
                 System.out.println("Error: " + e.getMessage());
             }   
             
-        }while( op != 8);
+        }while( op != 9);
         
     }
 }
