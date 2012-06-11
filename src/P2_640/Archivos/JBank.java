@@ -4,6 +4,7 @@
  */
 package P2_640.Archivos;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
@@ -238,5 +239,44 @@ public class JBank {
      */
     public void registrarIntereses(){
         
+    }
+    
+    public void exportarCuentas(String path)throws IOException{
+        rCuentas.seek(0);
+        double tsal = 0;
+        int cactivos = 0, cinactivos = 0;
+        
+        FileWriter fw = new FileWriter(path);
+        fw.write("Listado de Cuentas\n-----------------\n");
+        
+        while( rCuentas.getFilePointer() < rCuentas.length() ){
+            int cod = rCuentas.readInt();
+            String n = rCuentas.readUTF();
+            double sal = rCuentas.readDouble();
+            tsal += sal;
+            long ult = rCuentas.readLong();
+            boolean act = rCuentas.readBoolean();
+            
+            String dato = cod + " - " + n + " Lps. " + sal;
+            
+            if( act ){
+                long diff = new Date().getTime() - ult;
+                long dias = diff/(1000*60*60*24);
+                dato += " Usado hace " + dias + " dias";
+                cactivos++;
+            }
+            else{
+                dato += " INACTIVA";
+                cinactivos++;
+                        
+            }
+            
+            fw.write(dato + "\n");
+        }
+        
+        fw.write("Total en Saldos: " + tsal + "\n");
+        fw.write("Total Activas: " + cactivos + "\n");
+        fw.write("Total Inactivas: " + cinactivos);
+        fw.close();
     }
 }

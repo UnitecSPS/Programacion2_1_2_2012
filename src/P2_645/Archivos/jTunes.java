@@ -4,6 +4,7 @@
  */
 package P2_645.Archivos;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -308,5 +309,47 @@ public class jTunes {
         }
         
         return cuantos;
+    }
+    
+    public void exportInventario(String path) throws IOException{
+        rSongs.seek(0);
+        FileWriter fw = new FileWriter(path);
+        fw.write("Listado de Canciones\n--------------------\n");
+        
+        double tv = 0;
+        int cpop = 0, crock = 0, crap = 0, ccountry = 0;
+        
+        while(rSongs.getFilePointer() < rSongs.length() ){
+            int cod = rSongs.readInt();
+            String n = rSongs.readUTF();
+            double p = rSongs.readDouble();
+            TipoGenero tg = TipoGenero.porOrdinal( rSongs.readInt() );
+            rSongs.readInt();
+            rSongs.readInt();
+            
+            if( rSongs.readBoolean() ){
+                String dato = cod + "-" + n + " Lps." + p +
+                        " Genero: " + tg;
+                tv += p;
+                
+                if( TipoGenero.POP == tg )
+                    cpop++;
+                else if( tg == TipoGenero.ROCK )
+                    crock++;
+                else if( tg == TipoGenero.RAP )
+                    crap++;
+                else
+                    ccountry++;
+                
+                fw.write(dato + "\n");
+            }
+        }
+        
+        fw.write("\nDatos Sumarizados: \n");
+        fw.write("Total en Lps: " + tv + "\n");
+        fw.write("Pop: " + cpop + "\nRock: " + crock + 
+                "\nRap: " + crap + "\nCountry: " + ccountry);
+        fw.close();
+        
     }
 }

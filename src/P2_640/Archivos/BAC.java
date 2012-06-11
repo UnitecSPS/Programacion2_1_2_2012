@@ -27,7 +27,8 @@ public class BAC {
                 System.out.println("5-Retirar");
                 System.out.println("6-Inactivar Cuentas");
                 System.out.println("7-Libreta");
-                System.out.println("8-Salir");
+                System.out.println("8-Exportar");
+                System.out.println("9-Salir");
                 System.out.print("\nEscoja Opcion: ");
                 op = lea.nextInt();
                 

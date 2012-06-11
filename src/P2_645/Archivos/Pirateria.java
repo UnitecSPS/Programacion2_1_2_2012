@@ -5,6 +5,7 @@
 package P2_645.Archivos;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -28,7 +29,11 @@ public class Pirateria {
             System.out.println("4- Bajar Cancion");
             System.out.println("5- Listar Facturas");
             System.out.println("6- Monto Generado");
-            System.out.println("7- Salir");
+            System.out.println("7- Export Inventario");
+            System.out.println("8- Actualizar Precio");
+            System.out.println("9- Cancion Popular");
+            System.out.println("10-Inactivar Canciones");
+            System.out.println("11- Salir");
             System.out.println("\nEscoja Opcion: ");
             
             try{
@@ -53,12 +58,24 @@ public class Pirateria {
                     case 6:
                         generado();
                         break;
+                    case 7:
+                        export();
+                        break;
+                    case 8:
+                        actualizar();
+                        break;
+                    case 9:
+                        popular();
+                        break;
+                    case 10:
+                        inactivar();
+                        break;
                 }
                 
             }catch(Exception e){
                 System.out.println("Error: " + e.getMessage());
             }
-        }while( op != 7 );
+        }while( op != 11 );
         
     }
 
@@ -116,5 +133,43 @@ public class Pirateria {
         double m = jt.montoGenerado(inicio, fin);
         
         System.out.println("Monto: " + m);
+    }
+
+    private static void export() throws IOException {
+        System.out.print("Ingrese direccion de Arch. Texto: ");
+        jt.exportInventario(lea.next());
+    }
+
+    private static void actualizar() throws IOException {
+        System.out.println("Codigo de la cancion: ");
+        int cod = lea.nextInt();
+        System.out.println("Nuevo Precio: ");
+        double p = lea.nextDouble();
+        
+        if( jt.updatePrecio(cod, p))
+            System.out.println("Se actulizo correctamente");
+        else
+            System.out.println("No se pudo actualizar");            
+    }
+
+    private static void popular() throws IOException {
+        System.out.println("Min Date: Y/M/D: ");
+        Calendar c = Calendar.getInstance();
+        c.set(lea.nextInt(), lea.nextInt() , lea.nextInt());
+        
+        System.out.println("Cancion Popular: " + jt.cancionPopular(c.getTime()));
+    }
+
+    private static void inactivar() {
+        ArrayList<Integer> cods = new ArrayList<Integer>();
+        char resp;
+        
+        do{
+            System.out.println("Ingrese codigo: ");
+            cods.add( lea.nextInt() );
+            
+            System.out.println("Desea otra?(s/n): ");
+            resp = lea.next().charAt(0);
+        }while(resp == 's');
     }
 }

@@ -4,6 +4,8 @@
  */
 package P2_645.Archivos;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -53,5 +55,25 @@ public class TestTexto {
             }
             
         }while(resp == 's');
+        
+        //leer de texto
+        System.out.println("Dir de Arch txt: ");
+        try{
+            File file = new File(lea.next());
+            FileReader fr = new FileReader(file);
+            
+            char buffer[] = new char[(int)file.length()];
+            int bleidos = fr.read(buffer);
+            
+            System.out.println("Contenido:\n");
+            System.out.println(buffer);
+            System.out.println("Cantidad leida: " + bleidos + 
+                    " size del archivo: " + file.length());
+            
+            
+        }
+        catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
