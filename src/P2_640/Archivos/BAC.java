@@ -28,9 +28,8 @@ public class BAC {
                 System.out.println("6-Inactivar Cuentas");
                 System.out.println("7-Libreta");
                 System.out.println("8-Registrar Intereses");
-                System.out.println("9-Salir");
-                System.out.println("8-Exportar");
-                System.out.println("9-Salir");
+                System.out.println("9-Exportar");
+                System.out.println("10-Salir");
                 System.out.print("\nEscoja Opcion: ");
                 op = lea.nextInt();
                 
@@ -86,6 +85,10 @@ public class BAC {
                     case 8:
                         bank.registrarIntereses();
                         break;
+                    case 9:
+                        System.out.println("Ingrese archivo de txt: ");
+                        bank.exportarCuentas(lea.next());
+                        
                 }
             }
             catch(Exception e)
@@ -93,7 +96,7 @@ public class BAC {
                 System.out.println("Error: " + e.getMessage());
             }   
             
-        }while( op != 9);
+        }while( op != 10);
         
     }
 }
