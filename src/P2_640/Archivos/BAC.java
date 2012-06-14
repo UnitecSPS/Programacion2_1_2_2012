@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author CarlosArmando
  */
-public class BAC {
+public class BAC{
     
     public static void main(String args[]){
         JBank bank =new JBank();
