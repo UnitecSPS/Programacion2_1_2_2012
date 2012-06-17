@@ -48,11 +48,13 @@ public class DNIC {
                         break;
                     case 4:
                         tran.leerLog();
+                        break;
+                    case 5:
+                        tran.close();
                 }
             }
             catch(Exception e){
                 System.out.println("Error: " + e.getMessage());
-                e.printStackTrace();
             }
         }while(resp != 5);
     }

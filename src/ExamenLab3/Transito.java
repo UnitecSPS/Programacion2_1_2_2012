@@ -141,4 +141,10 @@ public class Transito {
         }
     }
     
+    public void close() throws IOException{
+        rEsquelas.close();
+        rHashTable.close();
+        log.close();
+    }
+    
 }
